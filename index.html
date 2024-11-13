@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why You Should Send Me the Homework!</title>
+    <title>Почему Лера скинет мне дз</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Why You Should Send Me the Homework! 😎</h1>
-        <p>Choose the best reason why you should send me the homework!</p>
+        <h1>Почему Лера скинет мне дз! 😎</h1>
+        <p>Выбери Лучший ответ!</p>
         
         <!-- Start Button -->
-        <button id="start-button" onclick="startQuiz()">Start Quiz</button>
+        <button id="start-button" onclick="startQuiz()">Начать</button>
 
         <!-- Quiz Section -->
         <div id="quiz" style="display: none;">
             <div class="question" id="question-1">
-                <p>What do you want in return for the homework?</p>
-                <button onclick="nextQuestion('A', 1)">A. A pizza party!</button>
-                <button onclick="nextQuestion('B', 1)">B. An eternal debt of gratitude!</button>
-                <button onclick="nextQuestion('C', 1)">C. Homework help whenever I ask!</button>
+                <p>Что ты хочешь за домашку?</p>
+                <button onclick="nextQuestion('A', 1)">A. Жвачку и тд.</button>
+                <button onclick="nextQuestion('B', 1)">B. Хз сама придумай</button>
+                <button onclick="nextQuestion('C', 1)">C. Домашка когда тебе надо</button>
             </div>
             <div class="question" id="question-2" style="display: none;">
-                <p>What will happen if you don't send me the homework?</p>
-                <button onclick="nextQuestion('A', 2)">A. A curse of unfinished tasks!</button>
-                <button onclick="nextQuestion('B', 2)">B. You will miss out on the Homework Heroes Club!</button>
-                <button onclick="nextQuestion('C', 2)">C. I might give you a 1000-word essay on why homework is important!</button>
+                <p>Что будет если ты не скинешь мне дз?</p>
+                <button onclick="nextQuestion('A', 2)">A. Проклятие на 8128 лет</button>
+                <button onclick="nextQuestion('B', 2)">B. Апокалипсис на 100 лет</button>
+                <button onclick="nextQuestion('C', 2)">C. Все твои волосы выпадут</button>
             </div>
             <div class="question" id="question-3" style="display: none;">
-                <p>What will my reaction be after you send me the homework?</p>
-                <button onclick="nextQuestion('A', 3)">A. I'll send you a big thank-you hug!</button>
-                <button onclick="nextQuestion('B', 3)">B. I'll write you a glowing recommendation!</button>
-                <button onclick="nextQuestion('C', 3)">C. I'll create a statue in your honor!</button>
+                <p>Что будет если ты мне скинешь домашку?</p>
+                <button onclick="nextQuestion('A', 3)">A. Я построю тебе памятник</button>
+                <button onclick="nextQuestion('B', 3)">B. У меня будет навсегда хорошее настроение</button>
+                <button onclick="nextQuestion('C', 3)">C. Это войдет в историю</button>
             </div>
             <div class="question" id="question-4" style="display: none;">
-                <p>Why do we need to send homework to each other?</p>
-                <button onclick="nextQuestion('A', 4)">A. To keep the Homework Gods happy!</button>
-                <button onclick="nextQuestion('B', 4)">B. Because teamwork makes the dream work!</button>
-                <button onclick="nextQuestion('C', 4)">C. It’s a great way to practice sharing!</button>
+                <p>Зачем отправлять дз друг другу?</p>
+                <button onclick="nextQuestion('A', 4)">A. Чтобы боги домашки были спокойны</button>
+                <button onclick="nextQuestion('B', 4)">B. Так нада</button>
+                <button onclick="nextQuestion('C', 4)">C. Шэринг из Кэринг</button>
             </div>
         </div>
 
         <div class="alert" id="alert"></div>
-        <button id="submit-button" onclick="endQuiz()" style=" display: none;">Send Homework</button>
+        <button id="submit-button" onclick="endQuiz()" style=" display: none;">Отправить домашку</button>
         <div id="summary" class="summary" style="display: none;">
-            <h2>Quiz Summary</h2>
+            <h2>Подытожим</h2>
             <ul id="summary-list"></ul>
         </div>
     </div>
@@ -91,7 +91,7 @@
 
         function endQuiz() {
             const alertBox = document.getElementById("alert");
-            let message = 'Thanks for participating!';
+            let message = 'Благодарочка';
 
             alertBox.textContent = message;
             alertBox.style.color = "#32cd32"; // green
@@ -116,55 +116,55 @@
 
                 switch (answer.question) {
                     case 1:
-                        questionText = "What do you want in return for the homework?";
+                        questionText = "Что ты хочешь за домашку?";
                         if (answer.answer === 'A') {
-                            answerText = "A. A pizza party!";
-                            explanation = "A pizza party is a fun and rewarding way to thank someone for their homework!";
+                            answerText = "A. Жвачку и тд.";
+                            explanation = "Зажралась но так и быть";
                         } else if (answer.answer === 'B') {
-                            answerText = "B. An eternal debt of gratitude!";
-                            explanation = "Gratitude is always nice, but you might want more than just a thank-you!";
+                            answerText = "B. Хз сама придумай";
+                            explanation = "В пределе разумного или просто скинь";
                         } else {
-                            answerText = "C. Homework help whenever I ask!";
-                            explanation = "Getting more help in the future is a solid reason!";
+                            answerText = "C. Домашка когда тебе надо";
+                            explanation = "Только за такой же сайт";
                         }
                         break;
                     case 2:
-                        questionText = "What will happen if you don't send me the homework?";
+                        questionText = "Что будет если ты не скинешь мне дз?";
                         if (answer.answer === 'A') {
-                            answerText = "A. A curse of unfinished tasks!";
-                            explanation = "If you don't send the homework, you'll face a never-ending cycle of tasks!";
+                            answerText = "A. Проклятие на 8128 лет";
+                            explanation = "все гг";
                         } else if (answer.answer === 'B') {
-                            answerText = "B. You will miss out on the Homework Heroes Club!";
-                            explanation = "Who doesn't want to be part of the Homework Heroes Club?!";
+                            answerText = "B. Апокалипсис на 100 лет";
+                            explanation = "можт ты больше проживешь";
                         } else {
-                            answerText = "C. I might give you a 1000-word essay on why homework is important!";
-                            explanation = "Writing 1000 words might not sound fun, but it'll teach you a lot about homework!";
+                            answerText = "C. Все твои волосы выпадут";
+                            explanation = "Все нормально лысые в тренде . наверное";
                         }
                         break;
                     case 3:
-                        questionText = "What will my reaction be after you send me the homework?";
+                        questionText = "Что будет если ты мне скинешь домашку?";
                         if (answer.answer === 'A') {
-                            answerText = "A. I'll send you a big thank-you hug!";
-                            explanation = "A virtual hug is always a great response!";
+                            answerText = "A. Я построю тебе памятник";
+                            explanation = "через пару лет";
                         } else if (answer.answer === 'B') {
-                            answerText = "B. I'll write you a glowing recommendation!";
-                            explanation = "Getting a glowing recommendation will definitely make you feel appreciated!";
+                            answerText = "B. У меня будет навсегда хорошее настроение";
+                            explanation = "О пасиба";
                         } else {
-                            answerText = "C. I'll create a statue in your honor!";
-                            explanation = "A statue might be a bit much, but it's a fun idea!";
+                            answerText = "C. Это войдет в историю";
+                            explanation = "3 следующих поколения будут помнить";
                         }
                         break;
                     case 4:
-                        questionText = "Why do we need to send homework to each other?";
+                        questionText = "Зачем отправлять дз друг другу?";
                         if (answer.answer === 'A') {
-                            answerText = "A. To keep the Homework Gods happy!";
-                            explanation = "The Homework Gods are always watching, and they appreciate teamwork!";
+                            answerText = "A. Чтобы боги домашки были спокойны";
+                            explanation = "А то проклятие";
                         } else if (answer.answer === 'B') {
-                            answerText = "B. Because teamwork makes the dream work!";
-                            explanation = "Teamwork is the key to success, especially when it comes to homework!";
+                            answerText = "B. Так нада";
+                            explanation = "так нада";
                         } else {
-                            answerText = "C. It’s a great way to practice sharing!";
-                            explanation = "Sharing homework is a good way to build communication skills and collaboration!";
+                            answerText = "C. Шэринг из Кэринг";
+                            explanation = "май инглиш фифти фифти";
                         }
                         break;
                 }
