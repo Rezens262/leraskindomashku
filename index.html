@@ -3,20 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework SOS!</title>
+    <title>Why You Should Send Me the Homework!</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Homework SOS!</h1>
-        <p>Hey, I need your homework... <br>Can you send it to me? 😅</p>
-        <button onclick="sendRequest()">Send Homework</button>
+        <h1>Why You Should Send Me the Homework! 😎</h1>
+        <p>Choose the best reason why you should send me the homework!</p>
+        
+        <!-- Start Button -->
+        <button id="start-button" onclick="startQuiz()">Start Quiz</button>
+
+        <!-- Quiz Section -->
+        <div id="quiz" style="display: none;">
+            <div class="question" id="question-1">
+                <p>What do you want in return for the homework?</p>
+                <button onclick="nextQuestion('A', 1)">A. A pizza party!</button>
+                <button onclick="nextQuestion('B', 1)">B. An eternal debt of gratitude!</button>
+                <button onclick="nextQuestion('C', 1)">C. Homework help whenever I ask!</button>
+            </div>
+            <div class="question" id="question-2" style="display: none;">
+                <p>What will happen if you don't send me the homework?</p>
+                <button onclick="nextQuestion('A', 2)">A. A curse of unfinished tasks!</button>
+                <button onclick="nextQuestion('B', 2)">B. You will miss out on the Homework Heroes Club!</button>
+                <button onclick="nextQuestion('C', 2)">C. I might give you a 1000-word essay on why homework is important!</button>
+            </div>
+            <div class="question" id="question-3" style="display: none;">
+                <p>What will my reaction be after you send me the homework?</p>
+                <button onclick="nextQuestion('A', 3)">A. I'll send you a big thank-you hug!</button>
+                <button onclick="nextQuestion('B', 3)">B. I'll write you a glowing recommendation!</button>
+                <button onclick="nextQuestion('C', 3)">C. I'll create a statue in your honor!</button>
+            </div>
+            <div class="question" id="question-4" style="display: none;">
+                <p>Why do we need to send homework to each other?</p>
+                <button onclick="nextQuestion('A', 4)">A. To keep the Homework Gods happy!</button>
+                <button onclick="nextQuestion('B', 4)">B. Because teamwork makes the dream work!</button>
+                <button onclick="nextQuestion('C', 4)">C. It’s a great way to practice sharing!</button>
+            </div>
+        </div>
+
         <div class="alert" id="alert"></div>
+        <button id="submit-button" onclick="endQuiz()" style=" display: none;">Send Homework</button>
+        <div id="summary" class="summary" style="display: none;">
+            <h2>Quiz Summary</h2>
+            <ul id="summary-list"></ul>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        let answers = 0;
+        let currentQuestion = 1;
+        const selectedAnswers = [];
+
+        function startQuiz() {
+            // Hide the start button and show the quiz
+            document.getElementById("start-button").style.display = 'none';
+            document.getElementById("quiz").style.display = 'block';
+            
+            // Start the first question with animation
+            const firstQuestion = document.getElementById("question-1");
+            firstQuestion.style.display = 'block';
+            firstQuestion.style.animation = "fadeIn 0.5s forwards";
+        }
+
+        function nextQuestion(answer, questionNumber) {
+            if (answer === 'A') {
+                answers++;
+            }
+            selectedAnswers.push({question: questionNumber, answer});
+
+            const currentQuestionElement = document.getElementById(`question-${questionNumber}`);
+            currentQuestionElement.style.animation = "fadeOut 0.5s forwards";
+
+            setTimeout(() => {
+                currentQuestionElement.style.display = 'none';
+                if (currentQuestion < 4) {
+                    currentQuestion++;
+                    const nextQuestionElement = document.getElementById(`question-${currentQuestion}`);
+                    nextQuestionElement.style.display = 'block';
+                    nextQuestionElement.style.animation = "fadeIn 0.5s forwards";
+                } else {
+                    document.getElementById("submit-button").style.display = 'block';
+                }
+            }, 500);
+        }
+
+        function endQuiz() {
+            const alertBox = document.getElementById("alert");
+            let message = 'Thanks for participating!';
+
+            alertBox.textContent = message;
+            alertBox.style.color = "#32cd32"; // green
+            alertBox.style.fontSize = "2rem";
+            alertBox.style.display = "block";
+
+            displaySummary();
+        }
+
+        function displaySummary() {
+            const summaryDiv = document.getElementById("summary");
+            const summaryList = document.getElementById("summary-list");
+
+            summaryDiv.style.display = 'block';
+            summaryList.innerHTML = ''; // Clear any previous content
+
+            selectedAnswers.forEach(answer => {
+                const li = document.createElement('li');
+                let questionText = '';
+                let answerText = '';
+                let explanation = '';
+
+                switch (answer.question) {
+                    case 1:
+                        questionText = "What do you want in return for the homework?";
+                        if (answer.answer === 'A') {
+                            answerText = "A. A pizza party!";
+                            explanation = "A pizza party is a fun and rewarding way to thank someone for their homework!";
+                        } else if (answer.answer === 'B') {
+                            answerText = "B. An eternal debt of gratitude!";
+                            explanation = "Gratitude is always nice, but you might want more than just a thank-you!";
+                        } else {
+                            answerText = "C. Homework help whenever I ask!";
+                            explanation = "Getting more help in the future is a solid reason!";
+                        }
+                        break;
+                    case 2:
+                        questionText = "What will happen if you don't send me the homework?";
+                        if (answer.answer === 'A') {
+                            answerText = "A. A curse of unfinished tasks!";
+                            explanation = "If you don't send the homework, you'll face a never-ending cycle of tasks!";
+                        } else if (answer.answer === 'B') {
+                            answerText = "B. You will miss out on the Homework Heroes Club!";
+                            explanation = "Who doesn't want to be part of the Homework Heroes Club?!";
+                        } else {
+                            answerText = "C. I might give you a 1000-word essay on why homework is important!";
+                            explanation = "Writing 1000 words might not sound fun, but it'll teach you a lot about homework!";
+                        }
+                        break;
+                    case 3:
+                        questionText = "What will my reaction be after you send me the homework?";
+                        if (answer.answer === 'A') {
+                            answerText = "A. I'll send you a big thank-you hug!";
+                            explanation = "A virtual hug is always a great response!";
+                        } else if (answer.answer === 'B') {
+                            answerText = "B. I'll write you a glowing recommendation!";
+                            explanation = "Getting a glowing recommendation will definitely make you feel appreciated!";
+                        } else {
+                            answerText = "C. I'll create a statue in your honor!";
+                            explanation = "A statue might be a bit much, but it's a fun idea!";
+                        }
+                        break;
+                    case 4:
+                        questionText = "Why do we need to send homework to each other?";
+                        if (answer.answer === 'A') {
+                            answerText = "A. To keep the Homework Gods happy!";
+                            explanation = "The Homework Gods are always watching, and they appreciate teamwork!";
+                        } else if (answer.answer === 'B') {
+                            answerText = "B. Because teamwork makes the dream work!";
+                            explanation = "Teamwork is the key to success, especially when it comes to homework!";
+                        } else {
+                            answerText = "C. It’s a great way to practice sharing!";
+                            explanation = "Sharing homework is a good way to build communication skills and collaboration!";
+                        }
+                        break;
+                }
+
+                li.innerHTML = `<strong>${questionText}</strong><br>${answerText}<br><em>${explanation}</em>`;
+                summaryList.appendChild(li);
+            });
+        }
+    </script>
 
 </body>
 </html>
-
