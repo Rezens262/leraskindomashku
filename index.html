@@ -3,178 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Почему Лера скинет мне дз</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Language Greeting</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Почему Лера скинет мне дз! 😎</h1>
-        <p>Выбери Лучший ответ!</p>
-        
-        <!-- Start Button -->
-        <button id="start-button" onclick="startQuiz()">Начать</button>
-
-        <!-- Quiz Section -->
-        <div id="quiz" style="display: none;">
-            <div class="question" id="question-1">
-                <p>Что ты хочешь за домашку?</p>
-                <button onclick="nextQuestion('A', 1)">A. Жвачку и тд.</button>
-                <button onclick="nextQuestion('B', 1)">B. Хз сама придумай</button>
-                <button onclick="nextQuestion('C', 1)">C. Домашка когда тебе надо</button>
-            </div>
-            <div class="question" id="question-2" style="display: none;">
-                <p>Что будет если ты не скинешь мне дз?</p>
-                <button onclick="nextQuestion('A', 2)">A. Проклятие на 8128 лет</button>
-                <button onclick="nextQuestion('B', 2)">B. Апокалипсис на 100 лет</button>
-                <button onclick="nextQuestion('C', 2)">C. Все твои волосы выпадут</button>
-            </div>
-            <div class="question" id="question-3" style="display: none;">
-                <p>Что будет если ты мне скинешь домашку?</p>
-                <button onclick="nextQuestion('A', 3)">A. Я построю тебе памятник</button>
-                <button onclick="nextQuestion('B', 3)">B. У меня будет навсегда хорошее настроение</button>
-                <button onclick="nextQuestion('C', 3)">C. Это войдет в историю</button>
-            </div>
-            <div class="question" id="question-4" style="display: none;">
-                <p>Зачем отправлять дз друг другу?</p>
-                <button onclick="nextQuestion('A', 4)">A. Чтобы боги домашки были спокойны</button>
-                <button onclick="nextQuestion('B', 4)">B. Так нада</button>
-                <button onclick="nextQuestion('C', 4)">C. Шэринг из Кэринг</button>
-            </div>
-        </div>
-
-        <div class="alert" id="alert"></div>
-        <button id="submit-button" onclick="endQuiz()" style=" display: none;">Отправить домашку</button>
-        <div id="summary" class="summary" style="display: none;">
-            <h2>Подытожым</h2>
-            <ul id="summary-list"></ul>
-        </div>
-    </div>
+    <button onclick="showMessage('hi')">English</button>
+    <button onclick="showMessage('hola')">Spanish</button>
+    <div id="message"></div>
 
     <script>
-        let answers = 0;
-        let currentQuestion = 1;
-        const selectedAnswers = [];
-
-        function startQuiz() {
-            // Hide the start button and show the quiz
-            document.getElementById("start-button").style.display = 'none';
-            document.getElementById("quiz").style.display = 'block';
-            
-            // Start the first question with animation
-            const firstQuestion = document.getElementById("question-1");
-            firstQuestion.style.display = 'block';
-            firstQuestion.style.animation = "fadeIn 0.5s forwards";
-        }
-
-        function nextQuestion(answer, questionNumber) {
-            if (answer === 'A') {
-                answers++;
-            }
-            selectedAnswers.push({question: questionNumber, answer});
-
-            const currentQuestionElement = document.getElementById(`question-${questionNumber}`);
-            currentQuestionElement.style.animation = "fadeOut 0.5s forwards";
-
-            setTimeout(() => {
-                currentQuestionElement.style.display = 'none';
-                if (currentQuestion < 4) {
-                    currentQuestion++;
-                    const nextQuestionElement = document.getElementById(`question-${currentQuestion}`);
-                    nextQuestionElement.style.display = 'block';
-                    nextQuestionElement.style.animation = "fadeIn 0.5s forwards";
-                } else {
-                    document.getElementById("submit-button").style.display = 'block';
-                }
-            }, 500);
-        }
-
-        function endQuiz() {
-            const alertBox = document.getElementById("alert");
-            let message = 'Благодарочка';
-
-            alertBox.textContent = message;
-            alertBox.style.color = "#32cd32"; // green
-            alertBox.style.fontSize = "2rem";
-            alertBox.style.display = "block";
-
-            displaySummary();
-        }
-
-        function displaySummary() {
-            const summaryDiv = document.getElementById("summary");
-            const summaryList = document.getElementById("summary-list");
-
-            summaryDiv.style.display = 'block';
-            summaryList.innerHTML = ''; // Clear any previous content
-
-            selectedAnswers.forEach(answer => {
-                const li = document.createElement('li');
-                let questionText = '';
-                let answerText = '';
-                let explanation = '';
-
-                switch (answer.question) {
-                    case 1:
-                        questionText = "Что ты хочешь за домашку?";
-                        if (answer.answer === 'A') {
-                            answerText = "A. Жвачку и тд.";
-                            explanation = "Зажралась но так и быть";
-                        } else if (answer.answer === 'B') {
-                            answerText = "B. Хз сама придумай";
-                            explanation = "В пределе разумного или просто скинь";
-                        } else {
-                            answerText = "C. Домашка когда тебе надо";
-                            explanation = "Только за такой же сайт";
-                        }
-                        break;
-                    case 2:
-                        questionText = "Что будет если ты не скинешь мне дз?";
-                        if (answer.answer === 'A') {
-                            answerText = "A. Проклятие на 8128 лет";
-                            explanation = "все гг";
-                        } else if (answer.answer === 'B') {
-                            answerText = "B. Апокалипсис на 100 лет";
-                            explanation = "можт ты больше проживешь";
-                        } else {
-                            answerText = "C. Все твои волосы выпадут";
-                            explanation = "Все нормально лысые в тренде . наверное";
-                        }
-                        break;
-                    case 3:
-                        questionText = "Что будет если ты мне скинешь домашку?";
-                        if (answer.answer === 'A') {
-                            answerText = "A. Я построю тебе памятник";
-                            explanation = "через пару лет";
-                        } else if (answer.answer === 'B') {
-                            answerText = "B. У меня будет навсегда хорошее настроение";
-                            explanation = "О пасиба";
-                        } else {
-                            answerText = "C. Это войдет в историю";
-                            explanation = "3 следующих поколения будут помнить";
-                        }
-                        break;
-                    case 4:
-                        questionText = "Зачем отправлять дз друг другу?";
-                        if (answer.answer === 'A') {
-                            answerText = "A. Чтобы боги домашки были спокойны";
-                            explanation = "А то проклятие";
-                        } else if (answer.answer === 'B') {
-                            answerText = "B. Так нада";
-                            explanation = "так нада";
-                        } else {
-                            answerText = "C. Шэринг из Кэринг";
-                            explanation = "май инглиш фифти фифти";
-                        }
-                        break;
-                }
-
-                li.innerHTML = `<strong>${questionText}</strong><br>${answerText}<br><em>${explanation}</em>`;
-                summaryList.appendChild(li);
-            });
+        function showMessage(greeting) {
+            document.getElementById('message').textContent = greeting;
         }
     </script>
-
 </body>
 </html>
